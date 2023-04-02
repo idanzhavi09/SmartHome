@@ -24,9 +24,7 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         
-        # Print a message indicating that a face has been detected
-        print("Face detected!")
-    
+        #Start Automation            
     # Detect full-body humans in the frame using the Haar cascade
     bodies = body_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
     
