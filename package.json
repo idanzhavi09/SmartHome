@@ -19,7 +19,9 @@
   "homepage": "https://github.com/idanzhavi09/SmartHome#readme",
   "dependencies": {
     "actions-on-google": "^3.0.0",
+    "coffee-script": "^1.12.7",
     "dotenv": "^16.0.3",
+    "gapi": "^0.0.3",
     "googleapis": "^114.0.0",
     "nodeenv": "^3.0.75"
   }

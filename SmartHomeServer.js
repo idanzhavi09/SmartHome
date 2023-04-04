@@ -1,16 +1,18 @@
-const { google } = require('googleapis');
+const env = require('dotenv').config();
+const coffeescript = require('coffee-script/register');
+const gapi = require('gapi');
 
-// Set up the Home Graph API client
-const homegraph = google.homegraph({
-  version: 'v1',
-  auth: '<YOUR_ACCESS_TOKEN>'
-});
-const getAuthToken = async() => {
-    const getAuth = await fetch(`https://accounts.google.com/o/oauth2/auth?client_id=${process.env.CLIENT_ID}&redirect_uri=http://localhost:3000/auth/google/callback&response_type=code` , {
-        method:'get', 
-    }).then((res) => {
-        console.log(res);
+
+gapi.load('client' , () => {
+    gapi.client.init({
+        apiKey:process.env.API_KEY,
+        clientId:process.env.CLIENT_ID,
+        scope:'https://www.googleapis.com/auth/homegraph',
+        discoveryDocs:['https://homegraph.googleapis.com/$discovery/rest'],
+    }).then(() => {
+        gapi.auth2.getAuthInstance().signIn().then(() => {
+            let access_token = gapi.auth2.getAuthInstance.currentUser.get();
+            console.log(access_token);
+        })
     })
-}
-
-getAuthToken();
+})
